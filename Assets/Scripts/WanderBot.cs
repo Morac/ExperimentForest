@@ -3,7 +3,7 @@ using System.Collections;
 
 public class WanderBot : MonoBehaviour {
 
-	Vector3 direction;
+	public Vector3 direction;
 
 	public float MinThinkTime = 1f;
 	public float MaxThinkTime = 4f;
@@ -11,14 +11,18 @@ public class WanderBot : MonoBehaviour {
 	public float MinSpeed = 1f;
 	public float MaxSpeed = 4f;
 
+	public float MinLifetime = 5f;
+	public float MaxLifetime = 10f;
+
 	float nextThinkTime;
 	float speed;
 
 	void Start()
 	{
-		direction = pickDirection();
+		//direction = pickDirection();
 		nextThinkTime = Random.Range(MinThinkTime, MaxThinkTime);
 		speed = Random.Range(MinSpeed, MaxSpeed);
+		Invoke("Done", Random.Range(MinLifetime, MaxLifetime));
 	}
 
 	void Update()
@@ -29,6 +33,11 @@ public class WanderBot : MonoBehaviour {
 			direction = pickDirection();
 		}
 		transform.position += direction * speed * Time.deltaTime;
+	}
+
+	void Done()
+	{
+		Destroy(gameObject);
 	}
 
 	Vector3 pickDirection()
