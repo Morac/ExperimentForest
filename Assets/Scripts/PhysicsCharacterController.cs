@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class PhysicsCharacterController : MonoBehaviour {
-
+public class PhysicsCharacterController : MonoBehaviour
+{
 	public float Speed = 4f;
+
+	void Start()
+	{
+		Cursor.lockState = CursorLockMode.Locked;
+	}
 
 	void FixedUpdate()
 	{
@@ -12,6 +16,6 @@ public class PhysicsCharacterController : MonoBehaviour {
 		var move = new Vector3(x, 0, z);
 
 		move = transform.TransformDirection(move) * Speed;
-		rigidbody.velocity = move;
+		GetComponent<Rigidbody>().velocity = move;
 	}
 }

@@ -19,11 +19,11 @@ public class LightDropoff : MonoBehaviour {
 	{
 		var mag = character.transform.position.magnitude;
 		var i = 1 - mag / maxDist;
-		light.intensity = i;
+		GetComponent<Light>().intensity = i;
 	
 		var colour = new Color(i, i, i);
 		cam.backgroundColor = colour;
 		RenderSettings.fogColor = colour;
-		ground.renderer.material.color = colour;
+		ground.GetComponent<Renderer>().material.color = colour;
 	}
 }
